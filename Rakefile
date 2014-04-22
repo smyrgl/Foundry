@@ -4,7 +4,7 @@ namespace :test do
     cp Dir.glob('Tests/Schemes/*.xcscheme'), "Tests/FoundryTests.xcodeproj/xcshareddata/xcschemes/"
   end
   
-  desc "Run the LevelSearch Tests for iOS"
+  desc "Run the Foundry Tests for iOS"
   task :ios => :prepare do
     run_tests('iostests', 'iphonesimulator')
     tests_failed('iOS') unless $?.success?
@@ -33,7 +33,7 @@ task :spec do
 end
 
 namespace :docs do 
-  desc "Generates the LevelSearch documentation using Appledoc"
+  desc "Generates the Foundry documentation using Appledoc"
   task :generate => 'appledoc:check' do
     command = apple_doc_command << " --no-create-docset --keep-intermediate-files --create-html `find Classes/ -name '*.h'`"
     run(command, 1)
