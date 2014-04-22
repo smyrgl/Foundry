@@ -1,37 +1,22 @@
-#
-# Be sure to run `pod lib lint NAME.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
 Pod::Spec.new do |s|
   s.name             = "Foundry"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Foundry."
-  s.description      = <<-DESC
-                       An optional longer description of Foundry
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "http://EXAMPLE/NAME"
-  s.screenshots      = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary          = "A library for creating test objects in Objective-C."
+  s.homepage         = "https://github.com/smyrgl/Foundry"
   s.license          = 'MIT'
   s.author           = { "John Tumminaro" => "john@tinylittlegears.com" }
-  s.source           = { :git => "http://EXAMPLE/NAME.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/EXAMPLE'
+  s.source           = { :git => "https://github.com/smyrgl/Foundry.git", :tag => s.version.to_s }
 
-  # s.platform     = :ios, '5.0'
-  # s.ios.deployment_target = '5.0'
+  s.platform     = :ios, '7.0'
+  s.ios.deployment_target = '7.1'
   # s.osx.deployment_target = '10.7'
   s.requires_arc = true
 
   s.source_files = 'Classes'
   s.resources = 'Assets/*.png'
 
-  s.ios.exclude_files = 'Classes/osx'
-  s.osx.exclude_files = 'Classes/ios'
-  # s.public_header_files = 'Classes/**/*.h'
-  # s.frameworks = 'SomeFramework', 'AnotherFramework'
-  # s.dependency 'JSONKit', '~> 1.4'
+  s.ios.exclude_files = 'Classes/Private'
+  s.osx.exclude_files = 'Classes/Private'
+  s.public_header_files = 'Classes/*.h'
+  s.frameworks = 'Foundation'
 end

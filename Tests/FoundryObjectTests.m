@@ -63,7 +63,7 @@
     Animal *newAnimal;
     XCTAssertNoThrow(newAnimal = [Animal foundryBuild], @"Build should not throw an error");
     XCTAssert(newAnimal, @"There must be an animal returned");
-    XCTAssert(newAnimal.name.length > 0, @"There must be a name");
+    XCTAssert(newAnimal.name, @"There must be a name");
 }
 
 - (void)testMissingAttributesInBuildSpec
