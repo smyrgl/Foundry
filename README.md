@@ -1,5 +1,6 @@
 # Foundry
 
+[![Build Status](https://travis-ci.org/smyrgl/Foundry.svg?branch=master)](https://travis-ci.org/smyrgl/Foundry)
 [![Version](http://cocoapod-badges.herokuapp.com/v/Foundry/badge.png)](http://cocoadocs.org/docsets/Foundry)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/Foundry/badge.png)](http://cocoadocs.org/docsets/Foundry)
 
