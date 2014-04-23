@@ -5,7 +5,6 @@ PODS:
   - MagicalRecord/Core (2.2)
 
 DEPENDENCIES:
-  - Gizou
   - Gizou (from `https://github.com/smyrgl/Gizou.git`)
   - MagicalRecord
 
