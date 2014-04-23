@@ -132,7 +132,7 @@ Well that's easy.  But what if you use Core Data?  Foundry has you covered.
 
 	Person *anotherPerson = [Person foundryCreateWithContext:context];
 
-	How about creating 10 saved people?
+	// How about creating 10 saved people?
 
 	NSArray *tenPeople = [Person foundryCreateNumber:10 withContext:context];
 ```
