@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Foundry"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A library for creating test objects in Objective-C."
   s.homepage         = "https://github.com/smyrgl/Foundry"
   s.license          = 'MIT'
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.public_header_files = 'Classes/*.h'
   s.frameworks = 'Foundation'
   s.dependency 'Gizou'
-  
+
 end
