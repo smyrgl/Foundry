@@ -11,7 +11,7 @@
 
 /**
  
- *  ENUM that provides the different property types you can set for a Foundry build spec when conforming to the `TGFoundryObject` protocol.
+ ENUM that provides the different property types you can set for a Foundry build spec when conforming to the `TGFoundryObject` protocol.
  
  */
 
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, FoundryPropertyType) {
     
     /**
      
-     *  Property represents a user's first name.
+    *   Property represents a user's first name.
      
      */
     FoundryPropertyTypeFirstName,
@@ -165,14 +165,50 @@ typedef NS_ENUM(NSUInteger, FoundryPropertyType) {
     FoundryPropertyTypeCustom,
 };
 
+/**
+ *  Protocol that an object must adopt in order to be manufactured using Foundry.
+ */
+
 @protocol TGFoundryObject <NSObject>
 
 @required
+
+/**
+ Method that defines the build spec for the object.  The keys must be the name of the property you wish to have Foundry assign when the object is created and the values must be `NSNumber` wrappers around `FoundryPropertyType` values for the value you wish to assign.
+ 
+ For example, you might have a property called "userID" that you want to assigned a uuid value to.  So one of the key value pairs in the build spec would be:
+ 
+        @"userID": [NSNumber numberWithInteger:FoundryPropertyTypeUUID]  
+ 
+ You can assign as few or as many values as you like for the object (you can even return an empty spec dictionary) but in order for the Foundry process to assign a value it must be defined in the build spec.
+ @return NSDictionary containing keys with the property names you want to assign and values that are `FoundryPropertyType`.
+ */
+
 + (NSDictionary *)foundryBuildSpecs;
 
 @optional
+
+/**
+ *  If you assign one of your properties the `FoundryPropertyTypeCustom` value in the build spec then this method will be called looking for a value to assign.
+ *
+ *  @param property Name of the property that Foundry is seeking a value for.
+ *
+ *  @return Value to assign to the property.
+ */
+
 + (id)foundryAttributeForProperty:(NSString *)property;
+
+/**
+ *  Callback when an object of the `TGFoundryObject` class is about to be built.
+ */
+
 + (void)foundryWillBuildObject;
+
+/**
+ *  Callback when an object of the `TGFoundryObject` class has been built.
+ *
+ *  @param object Object that was just built.
+ */
 + (void)foundryDidBuildObject:(id)object;
 
 @end

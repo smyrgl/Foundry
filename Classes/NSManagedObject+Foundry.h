@@ -11,9 +11,9 @@
 #import "TGFoundryObject.h"
 
 /**
- *  Category for `NSManagedObject` based models.  Because of the lifecycle differences between `NSObject` and `NSManagedObject` it is necessary to use these methods instead of the `foundryBuild` based ones on `NSManagedObject` classes (which will throw exceptions) just as you don't use the regular init methods on NSManagedObjects.
+ Category for `NSManagedObject` based models.  Because of the lifecycle differences between `NSObject` and `NSManagedObject` it is necessary to use these methods instead of the `foundryBuild:` based ones on `NSManagedObject` classes (which will throw exceptions) just as you don't use the regular init methods on NSManagedObjects.
  
-    In addition to an equivalent to `foundryBuild` for managed objects, this class also provides the unique `foundryCreateWithContext:` method which builds an object and saves the context before returning.
+ In addition to an equivalent to `foundryBuild` for managed objects, this class also provides the unique `foundryCreateWithContext:` method which builds an object and saves the context before returning.
  */
 
 @interface NSManagedObject (Foundry) <TGFoundryObject>

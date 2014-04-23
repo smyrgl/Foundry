@@ -7,9 +7,8 @@ Pod::Spec.new do |s|
   s.author           = { "John Tumminaro" => "john@tinylittlegears.com" }
   s.source           = { :git => "https://github.com/smyrgl/Foundry.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '7.0'
-  s.ios.deployment_target = '7.1'
-  # s.osx.deployment_target = '10.7'
+  s.ios.deployment_target = '6.0'
+  s.osx.deployment_target = '10.7'
   s.requires_arc = true
 
   s.source_files = 'Classes'
@@ -18,5 +17,6 @@ Pod::Spec.new do |s|
   s.osx.exclude_files = 'Classes/Private'
   s.public_header_files = 'Classes/*.h'
   s.frameworks = 'Foundation'
-  s.dependency 'MBFaker'
+  s.dependency 'Gizou'
+  
 end

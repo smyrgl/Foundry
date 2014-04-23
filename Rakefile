@@ -29,7 +29,7 @@ end
 desc "Runs the Foundry specs"
 task :spec do
   Rake::Task['test:ios'].invoke
-  #Rake::Task['test:osx'].invoke if is_mavericks_or_above
+  Rake::Task['test:osx'].invoke if is_mavericks_or_above
 end
 
 namespace :docs do 

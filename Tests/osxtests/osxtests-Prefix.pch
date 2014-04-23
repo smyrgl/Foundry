@@ -6,4 +6,12 @@
 
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <CoreData+MagicalRecord.h>
+    #import "Foundry.h"
+    #import "ManagedPerson+ManagedPersonTests.h"
+    #import "ManagedPerson.h"
+    #import "Person.h"
+    #import "Animal.h"
 #endif

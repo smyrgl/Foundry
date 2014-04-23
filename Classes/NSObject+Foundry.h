@@ -10,7 +10,7 @@
 #import "TGFoundryObject.h"
 
 /**
- *  Category for NSObject based Models.  Should also work equally well with pretty much any model derivitive in Objective-C but if you want to use CoreData then you should be looking at `NSManagedObject+Foundry.h`.
+ Category for NSObject based Models.  Should also work equally well with pretty much any model derivitive in Objective-C but if you want to use CoreData then you should be looking at `NSManagedObject+Foundry.h`.
  */
 
 @interface NSObject (Foundry) <TGFoundryObject>
