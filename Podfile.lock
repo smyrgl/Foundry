@@ -1,20 +1,20 @@
 PODS:
+  - Gizou (0.1.3)
   - MagicalRecord (2.2):
     - MagicalRecord/Core
   - MagicalRecord/Core (2.2)
-  - MBFaker (0.1.2)
 
 DEPENDENCIES:
+  - Gizou
+  - Gizou (from `https://github.com/smyrgl/Gizou.git`)
   - MagicalRecord
-  - MBFaker (from `https://github.com/foulkesjohn/MBFaker.git`, commit `fe54983624c134d67f9a4a81b61875df712cdf90`)
 
 EXTERNAL SOURCES:
-  MBFaker:
-    :commit: fe54983624c134d67f9a4a81b61875df712cdf90
-    :git: https://github.com/foulkesjohn/MBFaker.git
+  Gizou:
+    :git: https://github.com/smyrgl/Gizou.git
 
 SPEC CHECKSUMS:
+  Gizou: 5d17a448abd3f2b7ce5002f28073cdc717dc76c3
   MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
-  MBFaker: cf53384c68e5d59b408b66f7487447be580e1b05
 
 COCOAPODS: 0.32.1

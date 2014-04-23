@@ -7,7 +7,7 @@
 //
 
 #import "NSObject+Foundry.h"
-#import <MBFaker/MBFaker.h>
+#import <Gizou/Gizou.h>
 #import <objc/runtime.h>
 
 @implementation NSObject (Foundry)
@@ -61,71 +61,65 @@
         
         switch (type) {
             case FoundryPropertyTypeFirstName:
-                [attributesDict setObject:[MBFakerName firstName] forKey:key];
+                [attributesDict setObject:[GZNames firstName] forKey:key];
                 break;
             case FoundryPropertyTypeLastName:
-                [attributesDict setObject:[MBFakerName lastName] forKey:key];
+                [attributesDict setObject:[GZNames lastName] forKey:key];
                 break;
             case FoundryPropertyTypeFullName:
-                [attributesDict setObject:[MBFakerName name] forKey:key];
+                [attributesDict setObject:[GZNames name] forKey:key];
                 break;
             case FoundryPropertyTypeAddress:
-                [attributesDict setObject:[MBFakerAddress streetAddress] forKey:key];
+                [attributesDict setObject:[GZLocations streetAddress] forKey:key];
                 break;
             case FoundryPropertyTypeStreetName:
-                [attributesDict setObject:[MBFakerAddress streetName] forKey:key];
+                [attributesDict setObject:[GZLocations streetName] forKey:key];
                 break;
             case FoundryPropertyTypeCity:
-                [attributesDict setObject:[MBFakerAddress city] forKey:key];
+                [attributesDict setObject:[GZLocations city] forKey:key];
                 break;
             case FoundryPropertyTypeState:
-                [attributesDict setObject:[MBFakerAddress city] forKey:key];
+                [attributesDict setObject:[GZLocations city] forKey:key];
                 break;
             case FoundryPropertyTypeZipCode:
-                [attributesDict setObject:[MBFakerAddress zipCode] forKey:key];
+                [attributesDict setObject:[GZLocations zipCode] forKey:key];
                 break;
             case FoundryPropertyTypeCountry:
-                [attributesDict setObject:[MBFakerAddress country] forKey:key];
+                [attributesDict setObject:[GZLocations country] forKey:key];
                 break;
             case FoundryPropertyTypeLatitude:
             {
-                double low_bound = -90.00000000;
-                double high_bound = 90.00000000;
-                double rndValue = (((double)arc4random()/0x100000000)*(high_bound-low_bound)+low_bound);
-                [attributesDict setObject:[NSNumber numberWithDouble:rndValue] forKey:key];
+                [attributesDict setObject:[NSNumber numberWithDouble:[GZLocations latitude]] forKey:key];
             }
                 break;
             case FoundryPropertyTypeLongitude:
             {
-                double low_bound = -180.00000000;
-                double high_bound = 180.00000000;
-                double rndValue = (((double)arc4random()/0x100000000)*(high_bound-low_bound)+low_bound);
-                [attributesDict setObject:[NSNumber numberWithDouble:rndValue] forKey:key];
+                [attributesDict setObject:[NSNumber numberWithDouble:[GZLocations longitude]] forKey:key];
             }
                 break;
             case FoundryPropertyTypeEmail:
-                [attributesDict setObject:[MBFakerInternet email] forKey:key];
+                [attributesDict setObject:[GZInternet email] forKey:key];
                 break;
             case FoundryPropertyTypeURL:
-                [attributesDict setObject:[MBFakerInternet url] forKey:key];
+                [attributesDict setObject:[GZInternet url] forKey:key];
                 break;
             case FoundryPropertyTypeipV4Address:
-                [attributesDict setObject:[MBFakerInternet ipV4Address] forKey:key];
+                [attributesDict setObject:[GZInternet ipV4Address] forKey:key];
                 break;
             case FoundryPropertyTypeipV6Address:
-                [attributesDict setObject:[MBFakerInternet ipV6Address] forKey:key];
+                [attributesDict setObject:[GZInternet ipv6Address] forKey:key];
                 break;
             case FoundryPropertyTypeLoremIpsumShort:
-                [attributesDict setObject:[MBFakerLorem words:arc4random_uniform(5)] forKey:key];
+                [attributesDict setObject:[GZWords sentence] forKey:key];
                 break;
             case FoundryPropertyTypeLoremIpsumMedium:
-                [attributesDict setObject:[MBFakerLorem sentences:arc4random_uniform(5)] forKey:key];
+                [attributesDict setObject:[GZWords paragraph] forKey:key];
                 break;
             case FoundryPropertyTypeLoremIpsumLong:
-                [attributesDict setObject:[MBFakerLorem paragraphs:arc4random_uniform(5)] forKey:key];
+                [attributesDict setObject:[GZWords paragraphs] forKey:key];
                 break;
             case FoundryPropertyTypePhoneNumber:
-                [attributesDict setObject:[MBFakerPhoneNumber phoneNumber] forKey:key];
+                [attributesDict setObject:[GZPhoneNumbers phoneNumber] forKey:key];
                 break;
             case FoundryPropertyTypeUUID:
                 [attributesDict setObject:[[NSUUID UUID] UUIDString] forKey:key];
