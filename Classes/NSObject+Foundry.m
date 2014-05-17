@@ -79,7 +79,7 @@
                 [attributesDict setObject:[GZLocations city] forKey:key];
                 break;
             case FoundryPropertyTypeState:
-                [attributesDict setObject:[GZLocations city] forKey:key];
+                [attributesDict setObject:[GZLocations state] forKey:key];
                 break;
             case FoundryPropertyTypeZipCode:
                 [attributesDict setObject:[GZLocations zipCode] forKey:key];
