@@ -67,6 +67,13 @@ typedef NS_ENUM(NSUInteger, FoundryPropertyType) {
     FoundryPropertyTypeState,
     
     /**
+
+     *  Property represents a state.  Will return the two-character code for one of the valid US 50 states.
+
+     */
+    FoundryPropertyTypeStateCode,
+
+    /**
      
      *  Property represents a zip code, will be assigned a zip code string with the format "xxxxx" or "xxxxx-xxxx".
      
