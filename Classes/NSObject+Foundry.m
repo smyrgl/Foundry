@@ -125,8 +125,14 @@
                 [attributesDict setObject:[[NSUUID UUID] UUIDString] forKey:key];
                 break;
             case FoundryPropertyTypeCustom:
-                [attributesDict setObject:[self foundryAttributeForProperty:key] forKey:key];
+            {
+                id  value = [self foundryAttributeForProperty:key];
+                if (value)
+                {
+                    [attributesDict setObject:value forKey:key];
+                }
                 break;
+            }
             default:
                 break;
         }
