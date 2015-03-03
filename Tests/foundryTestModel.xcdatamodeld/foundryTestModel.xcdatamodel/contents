@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ManagedAnimal" representedClassName="ManagedAnimal" syncable="YES">
+        <attribute name="isExtinct" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="species" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPerson" inverseName="pets" inverseEntity="ManagedPerson" syncable="YES"/>
+    </entity>
     <entity name="ManagedPerson" representedClassName="ManagedPerson" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
@@ -18,8 +24,10 @@
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ManagedAnimal" inverseName="owner" inverseEntity="ManagedAnimal" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ManagedPerson" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="ManagedPerson" positionX="-63" positionY="-18" width="128" height="313"/>
+        <element name="ManagedAnimal" positionX="-63" positionY="108" width="128" height="105"/>
     </elements>
 </model>

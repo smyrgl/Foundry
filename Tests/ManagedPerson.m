@@ -2,31 +2,33 @@
 //  ManagedPerson.m
 //  FoundryTests
 //
-//  Created by John Tumminaro on 4/21/14.
+//  Created by Hirad Motamed on 2015-03-02.
 //
 //
 
 #import "ManagedPerson.h"
+#import "ManagedAnimal.h"
 
 
 @implementation ManagedPerson
 
-@dynamic name;
 @dynamic address;
+@dynamic bio;
 @dynamic city;
-@dynamic state;
-@dynamic zipCode;
 @dynamic country;
+@dynamic email;
+@dynamic extendedBio;
+@dynamic hobbies;
+@dynamic ipV4Address;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic email;
-@dynamic url;
-@dynamic ipV4Address;
-@dynamic hobbies;
-@dynamic bio;
-@dynamic extendedBio;
-@dynamic phoneNumber;
-@dynamic uuid;
+@dynamic name;
 @dynamic numberOfChildren;
+@dynamic phoneNumber;
+@dynamic state;
+@dynamic url;
+@dynamic uuid;
+@dynamic zipCode;
+@dynamic pets;
 
 @end

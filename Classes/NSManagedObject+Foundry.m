@@ -8,6 +8,12 @@
 
 #import "NSManagedObject+Foundry.h"
 
+@interface NSObject (FoundryPrivate)
++(NSDictionary *)foundryAttributesWithSpec:(NSDictionary*)spec;
+@end
+
+
+
 @implementation NSManagedObject (Foundry)
 
 + (instancetype)foundryBuild
@@ -17,18 +23,40 @@
                                  userInfo:nil];
 }
 
-+ (instancetype)foundryBuildWithContext:(NSManagedObjectContext *)context
++ (instancetype)foundryBuildWithContext:(NSManagedObjectContext *)context {
+    return [self foundryBuildWithContext:context usingSpec:[self foundryBuildSpecs]];
+}
+
++ (instancetype)foundryBuildWithContext:(NSManagedObjectContext *)context usingSpec:(NSDictionary*)spec
 {
     NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
-    NSDictionary *attributes = [self foundryAttributes];
+    NSDictionary *attributes = [self foundryAttributesWithSpec:spec];
     NSDictionary *propertiesByName = object.entity.propertiesByName;
     for (NSString *propertyName in [propertiesByName allKeys]) {
-        if (attributes[propertyName]) {
-            if ([propertiesByName[propertyName] isKindOfClass:[NSAttributeDescription class]]) {
-                [object setValue:attributes[propertyName] forKey:propertyName];
-            } else if ([propertiesByName[propertyName] isKindOfClass:[NSRelationshipDescription class]]) {
-                
+        if ([propertiesByName[propertyName] isKindOfClass:[NSAttributeDescription class]] &&
+            attributes[propertyName]) {
+            [object setValue:attributes[propertyName] forKey:propertyName];
+        } else if ([propertiesByName[propertyName] isKindOfClass:[NSRelationshipDescription class]] &&
+                   spec[propertyName]) {
+            NSRelationshipDescription* relationship = propertiesByName[propertyName];
+            id relatedObject;
+            FoundryPropertyType type = [spec[propertyName] integerValue];
+            if (type == FoundryPropertyTypeAnyRelationship) {
+                NSEntityDescription* relatedEntity = [relationship destinationEntity];
+                Class targetClass = NSClassFromString([relatedEntity managedObjectClassName]);
+                NSRelationshipDescription* inverse = [relationship inverseRelationship];
+                NSMutableDictionary* targetSpec = [[targetClass foundryBuildSpecs] mutableCopy];
+                if (inverse) {
+                    [targetSpec removeObjectForKey:[inverse name]];
+                }
+                relatedObject = [targetClass foundryBuildWithContext:context usingSpec:targetSpec];
+                relatedObject = [relationship isToMany]? [NSSet setWithObject:relatedObject] : relatedObject;
             }
+            else if (type == FoundryPropertyTypeSpecificRelationship) {
+                relatedObject = [self foundryRelatedObjectForProperty:propertyName
+                                                            inContext:context];
+            }
+            [object setValue:relatedObject forKey:propertyName];
         }
     }
     

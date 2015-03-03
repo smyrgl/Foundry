@@ -52,10 +52,13 @@
                                  userInfo:nil];
 }
 
-+ (NSDictionary *)foundryAttributes
++ (NSDictionary *)foundryAttributes {
+    return [self foundryAttributesWithSpec:[self foundryBuildSpecs]];
+}
+
++ (NSDictionary *)foundryAttributesWithSpec:(NSDictionary*)spec
 {
     NSMutableDictionary *attributesDict = [NSMutableDictionary new];
-    NSDictionary *spec = [self foundryBuildSpecs];
     for (NSString *key in [spec allKeys]) {
         FoundryPropertyType type = [spec[key] integerValue];
         
