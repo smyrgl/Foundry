@@ -71,7 +71,7 @@ What we really need is something like [factory_girl](https://github.com/thoughtb
 
 ## Using Foundry
 
-Enter Foundry.  It aims to solve all of these problems by giving you easy ways to mint model objects using "real" data with special handling for Core Data entities and runtime property setting.  All we have to do to get started (after installing Foundry using Cocoapods and importing the "Foundry.h" header) is to take our Person model and adopt the TGFoundryObject protocol.
+Enter Foundry.  It aims to solve all of these problems by giving you easy ways to mint model objects using "real" data with special handling for Core Data entities and runtime property setting.  All we have to do to get started (after installing Foundry using CocoaPods and importing the "Foundry.h" header) is to take our Person model and adopt the TGFoundryObject protocol.
 
 ### With NSObject models
 
@@ -156,7 +156,7 @@ Right now you can set these using the custom property types but very soon Foundr
 
 ## Requirements
 
-Foundry is built for use on both OSX 10.7 and above and iOS 6.0 and above.  Your best bet to to install using Cocoapods.  
+Foundry is built for use on both OSX 10.7 and above and iOS 6.0 and above.  Your best bet to to install using CocoaPods.  
 
 If you want to run the test suite, clone the repo, run "pod install" in the main directory and then do "rake spec".
 
