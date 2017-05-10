@@ -1,7 +1,7 @@
 PODS:
   - Gizou (0.1.3)
   - MagicalRecord (2.2):
-    - MagicalRecord/Core
+    - MagicalRecord/Core (= 2.2)
   - MagicalRecord/Core (2.2)
 
 DEPENDENCIES:
@@ -12,8 +12,15 @@ EXTERNAL SOURCES:
   Gizou:
     :git: https://github.com/smyrgl/Gizou.git
 
+CHECKOUT OPTIONS:
+  Gizou:
+    :commit: 09d10c2c49bfe52a714d5b182799d27cc79bbcbe
+    :git: https://github.com/smyrgl/Gizou.git
+
 SPEC CHECKSUMS:
   Gizou: 5d17a448abd3f2b7ce5002f28073cdc717dc76c3
-  MagicalRecord: 95d49d74ef752cd52f6ad87bcb474817fc3978cf
+  MagicalRecord: 2dc87179ae7c1f2a274442624ec65a07d4357a6f
 
-COCOAPODS: 0.32.1
+PODFILE CHECKSUM: a8bf7158851c7d4952a122893aefe8fb2705eb03
+
+COCOAPODS: 1.2.0

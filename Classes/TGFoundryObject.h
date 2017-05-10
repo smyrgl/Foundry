@@ -163,7 +163,25 @@ typedef NS_ENUM(NSUInteger, FoundryPropertyType) {
      
      */
     FoundryPropertyTypeCustom,
+    
+    /** 
+     
+     *  (Managed objects ONLY) Property represents a relationship where the destination entity's class also conforms to `TGFoundryObject` protocol. The related object will be built using `+foundryBuildWithContext:`.
+     *  @note If the relationship is to-many, a factory object will be wrapped in `NSSet`.
+     
+     */
+    FoundryPropertyTypeAnyRelationship,
+    
+    /**
+     
+     *  (Managed objects ONLY) Property represents a relationship. The related object will be set using `+foundryRelatedObjectForKey:inContext:` method on the `TGFoundryObject` protocol.
+     
+     */
+    FoundryPropertyTypeSpecificRelationship,
 };
+
+
+@class NSManagedObjectContext;
 
 /**
  *  Protocol that an object must adopt in order to be manufactured using Foundry.
@@ -197,6 +215,18 @@ typedef NS_ENUM(NSUInteger, FoundryPropertyType) {
  */
 
 + (id)foundryAttributeForProperty:(NSString *)property;
+
+/**
+ *  If you assign a relationship property the `FoundryPropertyTypeSpecificRelationship` value in the build specs, this method will be called looking for the related object.
+ *
+ *  @param property Name of the relationship key that Foundry is seeking a value for.
+ *
+ *  @param context The managed object context that the receiver's new instance is being created in.
+ *
+ *  @return The managed object to set for the relationship.
+ */
+
++ (id)foundryRelatedObjectForProperty:(NSString*)property inContext:(NSManagedObjectContext*)context;
 
 /**
  *  Callback when an object of the `TGFoundryObject` class is about to be built.

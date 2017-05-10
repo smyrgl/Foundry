@@ -7,6 +7,7 @@
 //
 
 #import "ManagedPerson+ManagedPersonTests.h"
+#import "ManagedAnimal.h"
 
 @implementation ManagedPerson (ManagedPersonTests)
 
@@ -31,6 +32,7 @@
              @"phoneNumber": [NSNumber numberWithInteger:FoundryPropertyTypePhoneNumber],
              @"uuid": [NSNumber numberWithInteger:FoundryPropertyTypeUUID],
              @"numberOfChildren": [NSNumber numberWithInteger:FoundryPropertyTypeCustom],
+             @"pets": @(FoundryPropertyTypeSpecificRelationship)
              };
 }
 
@@ -38,6 +40,27 @@
 {
     if ([property isEqualToString:@"numberOfChildren"]) {
         return [NSNumber numberWithInteger:arc4random_uniform(5)];
+    }
+    
+    return nil;
+}
+
++ (id)foundryRelatedObjectForProperty:(NSString *)property
+                            inContext:(NSManagedObjectContext *)context {
+    if ([property isEqualToString:@"pets"]) {
+        NSFetchRequest* fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ManagedAnimal class])];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]];
+        // hypothetically, we would search for a specific item here
+        NSError* error;
+        NSArray* fetchResults = [context executeFetchRequest:fetchRequest error:&error];
+        if (fetchRequest == nil) {
+            // Log Error
+            return nil;
+        }
+        ManagedAnimal* animal = [fetchResults firstObject];
+        if (animal) {
+            return [NSSet setWithObject:animal];
+        }
     }
     
     return nil;

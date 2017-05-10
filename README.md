@@ -152,7 +152,11 @@ What if you want to manually assign the value yourself during the build process 
 
 ### Relationships
 
-Right now you can set these using the custom property types but very soon Foundry will add the ability to nest factories so that you can assign a factory to a relationship attribute as part of your build spec.  Stay tuned!
+Relationships are supported for `NSManagedObject`s. You have two options:
+
+ - `FoundryPropertyTypeAnyRelationship`: Assuming the related object is another `NSManagedObject` that conforms to `TGFoundryObject`, using this type will build an instance of that class using `foundryBuildWithContext:`. 
+
+ - `FoundryPropertyTypeSpecificRelationship`: If you want to provide a specific object (or set, for to-many) relationships, specify this type in the build specs, then implement `foundryRelatedObjectForProperty:inContext:` method. 
 
 ## Requirements
 

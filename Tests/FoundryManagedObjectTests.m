@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "ManagedAnimal+ManagedAnimalTests.h"
+#import "ManagedPerson+ManagedPersonTests.h"
 
 @interface FoundryManagedObjectTests : XCTestCase
 
@@ -32,7 +34,6 @@
     ManagedPerson *newPerson = [ManagedPerson foundryBuildWithContext:[NSManagedObjectContext MR_defaultContext]];
     XCTAssert(newPerson, @"There must be a new person built");
     XCTAssert(newPerson.objectID.isTemporaryID, @"The object should have a temporary ID");
-    
 }
 
 - (void)testCreateManagedObject
@@ -70,6 +71,24 @@
 - (void)testFailObjectBuildBatch
 {
     XCTAssertThrows([ManagedPerson foundryBuildNumber:10], @"Trying to use the batch build method on a managed object should throw an exception");
+}
+
+- (void)testBuildManagedObjectsWithAnyRelationship
+{
+    NSArray *animals = [ManagedAnimal foundryCreateNumber:5 withContext:[NSManagedObjectContext MR_defaultContext]];
+    for (ManagedAnimal* animal in animals) {
+        XCTAssertNotNil(animal.owner, @"Creating a new managed object should also create related objects.");
+    }
+}
+
+-(void)testBuildManagedObjectsWithSpecificRelationship
+{
+    NSManagedObjectContext* context = [NSManagedObjectContext MR_defaultContext];
+    NSArray *animals = [[ManagedAnimal foundryCreateNumber:5 withContext:context] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
+    ManagedPerson *person = [ManagedPerson foundryCreateWithContext:context];
+    XCTAssert([person.pets count] == 1, @"To-many relationships created with `FoundryPropertyTypeAnyRelationship` should have a single object.");
+    ManagedAnimal* thePet = [person.pets anyObject];
+    XCTAssert([thePet.name isEqualToString:[[animals firstObject] name]], @"`FoundryPropertyTypeSpecificRelationship` should set the right object.");
 }
 
 @end
