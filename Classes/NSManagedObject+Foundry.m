@@ -24,7 +24,11 @@
 }
 
 + (instancetype)foundryBuildWithContext:(NSManagedObjectContext *)context {
-    return [self foundryBuildWithContext:context usingSpec:[self foundryBuildSpecs]];
+    [self foundryWillBuildObject];
+    id instance = [self foundryBuildWithContext:context usingSpec:[self foundryBuildSpecs]];
+    [self foundryDidBuildObject:instance];
+
+    return instance;
 }
 
 + (instancetype)foundryBuildWithContext:(NSManagedObjectContext *)context usingSpec:(NSDictionary*)spec
